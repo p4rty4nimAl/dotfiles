@@ -1,0 +1,35 @@
+file,dependencies
+.config/i3,i3-wm
+.config/i3/backgrounds.d,
+.config/i3/close.i3,systemd
+.config/i3/config,[.config/i3/sh/lock.sh] [.config/i3/sh/dmenu.sh] [.config/i3/sh/background.sh] [.config/i3/sh/toggle-compositor.sh] dex xss-lock systemd flameshot dunst kwalletmanager hsetroot
+.config/i3/fn.i3,[.config/i3/sh/change_brightness.sh] pulseaudio-utils
+.config/i3/i3status.conf,i3status
+.config/i3/i3status.i3,i3status
+.config/i3/open.i3,bash
+.config/i3/open.d/,
+.config/i3/open.d/code.i3,code?
+.config/i3/open.d/firefox.i3,firefox
+.config/i3/open.d/github-desktop.i3,github-desktop?
+.config/i3/open.d/htop.i3,htop
+.config/i3/open.d/node.i3,node?
+.config/i3/open.d/proton-authenticator.i3,proton-authenticator?
+.config/i3/open.d/proton-pass.i3,proton-pass?
+.config/i3/open.d/pycharm.i3,pycharm?
+.config/i3/open.d/python3.i3,python3
+.config/i3/open.d/show-configs.i3,$EDITOR
+.config/i3/open.d/spotify.i3,spotify-client?
+.config/i3/open.d/steam.i3,steam-installer?
+.config/i3/open.d/thunar.i3,thunar
+.config/i3/picom.conf,picom
+.config/i3/resize.i3,
+.config/i3/sh/,bash
+.config/i3/sh/audio_notify.sh,
+.config/i3/sh/background.sh,
+.config/i3/sh/battery_health.sh,
+.config/i3/sh/change_brightness.sh,brightnessctl coreutils dunst
+.config/i3/sh/dmenu.sh,suckless-tools
+.config/i3/sh/lock.sh,dunst hsetroot [.config/i3/sh/background.sh] i3lock
+.config/i3/sh/monitors.sh,x11-xserver-utils grep mawk coreutils hsetroot [.config/i3/sh/background.sh]
+.config/i3/sh/startup.sh,grep coreutils xinput x11-xserver-utils hsetroot [.config/i3/sh/toggle-compositor.sh]
+.config/i3/sh/toggle-compositor.sh,picom
