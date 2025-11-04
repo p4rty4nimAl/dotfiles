@@ -55,7 +55,7 @@
 ##### toggle-compositor.sh [picom]
 
 # minimal packages for graphical envrionment
-MIN_PKGS=(bash coreutils firefox grep i3-wm i3status python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
+MIN_PKGS=(bash coreutils dbus-x11 firefox grep i3-wm i3status mawk python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
 # nice-to-haves
 PKGS=(brightnessctl dex dunst flameshot github-desktop hsetroot htop i3lock kwalletmanager picom proton-authenticator proton-pass pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
 
@@ -84,11 +84,33 @@ is_installed() {
     done
 }
 
-
 while IFS=, read -r file dependencies; do
     if is_installed $dependencies; then
-        /bin/true
+        if [ -e "$HOME/$file" ]; then
+            # file already exists
+            # if symlink/dir, leave it alone (probably from previous ./install.sh)
+            # else warn
+            if [ ! -h "$HOME/$file" ] && [ ! -d "$HOME/$file" ]; then
+                # file is not from previous ./install.
+                # TODO: prompt to overwrite
+                echo "File already exists, ignoring: $file"
+            fi
+        else
+            # file does not exist, create/symlink it
+            if [ -d "$(pwd)/src/$file" ]; then
+                echo "Creating directory: $file"
+                mkdir "$HOME/$file"
+            else 
+                echo "Linking: $file"
+                ln -s "$(pwd)/src/$file" "$HOME/$file"
+            fi
+        fi
     else
-        echo "MISSING: $dependencies"
+        # TODO: better error handling/raising here
+        echo "Missing 1 or more of: $dependencies"
     fi
 done <<< "$DEPS"
+
+echo "Installation successful! (*kind of)"
+echo "Running post-install script."
+. ./post-install.sh
