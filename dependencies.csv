@@ -1,11 +1,15 @@
 file,dependencies
-.config/i3,i3-wm
-.config/i3/backgrounds.d,
+.bash_aliases,bash
+.bash_logout,bash
+.bashrc,bash
+.config/i3/,i3-wm
+.config/i3/background.d/,
 .config/i3/close.i3,systemd
 .config/i3/config,[.config/i3/sh/lock.sh] [.config/i3/sh/dmenu.sh] [.config/i3/sh/background.sh] [.config/i3/sh/toggle-compositor.sh] dex xss-lock systemd flameshot dunst kwalletmanager hsetroot
 .config/i3/fn.i3,[.config/i3/sh/change_brightness.sh] pulseaudio-utils
 .config/i3/i3status.conf,i3status
 .config/i3/i3status.i3,i3status
+.config/i3/management.i3,
 .config/i3/open.i3,bash
 .config/i3/open.d/,
 .config/i3/open.d/code.i3,code?
@@ -33,3 +37,6 @@ file,dependencies
 .config/i3/sh/monitors.sh,x11-xserver-utils grep mawk coreutils hsetroot [.config/i3/sh/background.sh]
 .config/i3/sh/startup.sh,grep coreutils xinput x11-xserver-utils hsetroot [.config/i3/sh/toggle-compositor.sh]
 .config/i3/sh/toggle-compositor.sh,picom
+.config/i3/workspaces.i3,
+.profile,xinit
+.xinitrc,bash dbus-x11 i3-wm

@@ -1,0 +1,15 @@
+ACPID is used to handle some keyboard keys on newer ThinkPad models.
+
+This workaround also requires acpi_fakekey, to generate missing keys.
+
+Specifically - so far - the key that should generate XF86AudioMicMute is handled using ACPID.
+File to reference for keycodes: /usr/share/acpi-support/key-constants - requires acpi-support to be installed.
+
+Run the following command to install the event file to support the key.
+```sh
+echo "event=button[ /]\
+action=acpi_fakekey 190 # producess XF86AudioMicMute in X\
+" | sudo tee /etc/acpi/events/micmute-acpi > /dev/null 
+```
+
+echo 0, 8, 10 > /proc/acpi/ibm/beep to turn off beep (sometimes?)
