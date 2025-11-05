@@ -58,9 +58,10 @@
 MIN_PKGS=(bash coreutils dbus-x11 firefox grep i3-wm i3status mawk python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
 # nice-to-haves
 PKGS=(brightnessctl dex dunst flameshot github-desktop hsetroot htop i3lock kwalletmanager picom proton-authenticator proton-pass pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
+# packages that arent available by default (on debian at least)
+NON_APT_PKGS=(code github-desktop node proton-authenticator proton-pass pycharm idea spotify steam)
 
-
-# assuming 64bit system
+# assuming x86_64 system, filtering in case of multiarch
 INSTALL_DATA="$(apt list "${MIN_PKGS[@]}" "${PKGS[@]}" 2>/dev/null | grep -v "i386" | tail -n +2)"
 # dependencies file
 DEPS=$(tail -n +2 < "dependencies.csv") # $1?
@@ -78,13 +79,61 @@ is_installed() {
             # shellcheck disable=SC2046
             is_installed $( (grep "$key" | cut -d "," -f 2) <<< "$DEPS") || return 1;
         elif [ "$(echo "$INSTALL_DATA" | grep -F "$1" | grep -cE "(installed|upgradable)")" = "0" ]; then
-            return 1;
+            # check if fake, command -> return 1 if fail
+            if [ "${1:(-1):1}" != "?" ] || [ -z "$(command -v ${1:0:-1})" ]; then
+                return 1
+            fi
         fi
         shift
     done
 }
 
+which_missing() {
+    local CONFIRMED_MISSING=()
+    while (( $# )); do
+        is_installed "$1" || CONFIRMED_MISSING+=("$1")
+        shift
+    done
+    echo "${CONFIRMED_MISSING[@]}"
+}
+
+notice_displayed="false"
+notice() {
+    if [ -n $notice_displayed ]; then
+        echo "You can suppress install requests with 'noinstall'."
+        notice_displayed=
+    fi
+}
+
+if [ "$1" != "noinstall" ]; then
+    if [ "$(is_installed ${MIN_PKGS[@]})" = "1" ]; then
+        notice
+        read -rep "Would you like to install the minimal graphical packages? (y/n): " CONSENT
+        if [ "$CONSENT" = "Y"] || [ "$CONSENT" = "y" ]; then
+            sudo apt install $(which_missing ${MIN_PKGS[@]})
+        fi
+    fi
+    if [ "$(is_installed ${PKGS[@]})" = "1" ]; then
+        notice
+        read -rep "Would you like to install the additional graphical packages? (y/n): " CONSENT
+        if [ "$CONSENT" = "Y"] || [ "$CONSENT" = "y" ]; then
+            sudo apt install $(which_missing ${PKGS[@]})
+        fi
+    fi
+    for dep in $NON_APT_PKGS; do
+        if [ -z "$(command -v $dep)" ]; then
+            notice
+            # not installed, prompt user
+            read -rep "Would you like to install '$dep'? (y/n): " CONSENT
+            if [ "$CONSENT" = "Y" ] || [ "$CONSENT" = "y" ]; then
+                . $(pwd)/installers/$dep.sh
+            fi
+        fi
+    done
+fi
+
 while IFS=, read -r file dependencies; do
+    # shellcheck disable=SC2086
     if is_installed $dependencies; then
         if [ -e "$HOME/$file" ]; then
             # file already exists
@@ -107,7 +156,9 @@ while IFS=, read -r file dependencies; do
         fi
     else
         # TODO: better error handling/raising here
-        echo "Missing 1 or more of: $dependencies"
+        # shellcheck disable=SC2086
+        missing=$(which_missing $dependencies)
+        echo "Missing: $missing"
     fi
 done <<< "$DEPS"
 
