@@ -112,4 +112,6 @@ if [ -d "$HOME/.spicetify" ]; then
     PATH="$PATH:$HOME/.spicetify"
 fi
 
+export EDITOR="nano"
+
 export PATH

@@ -80,7 +80,7 @@ if [ "$1" != "noinstall" ]; then
             sudo apt install $(which_missing ${PKGS[@]})
         fi
     fi
-    for dep in $NON_APT_PKGS; do
+    for dep in ${NON_APT_PKGS[@]}; do
         if [ -z "$(command -v $dep)" ]; then
             notice
             # not installed, prompt user

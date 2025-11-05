@@ -22,7 +22,7 @@ file,dependencies
 .config/i3/open.d/proton-pass.i3,proton-pass?
 .config/i3/open.d/pycharm.i3,pycharm?
 .config/i3/open.d/python3.i3,python3
-.config/i3/open.d/show-configs.i3,$EDITOR
+.config/i3/open.d/show-configs.i3,nano
 .config/i3/open.d/spotify.i3,spotify?
 .config/i3/open.d/steam.i3,steam?
 .config/i3/open.d/thunar.i3,thunar
@@ -32,7 +32,7 @@ file,dependencies
 .config/i3/sh/audio_notify.sh,
 .config/i3/sh/background.sh,
 .config/i3/sh/battery_health.sh,
-.config/i3/sh/change_brightness.sh,brightnessctl coreutils dunst
+.config/i3/sh/change_brightness.sh,coreutils dunst
 .config/i3/sh/dmenu.sh,suckless-tools
 .config/i3/sh/lock.sh,dunst hsetroot [.config/i3/sh/background.sh] i3lock
 .config/i3/sh/monitors.sh,x11-xserver-utils grep mawk coreutils hsetroot [.config/i3/sh/background.sh]
