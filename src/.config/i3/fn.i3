@@ -12,8 +12,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness control
-bindsym XF86MonBrightnessDown $brightness -5
-bindsym XF86MonBrightnessUp $brightness +5
+bindsym XF86MonBrightnessDown $brightness - 5
+bindsym Shift+XF86MonBrightnessDown $brightness - 1
+bindsym XF86MonBrightnessUp $brightness + 5
+bindsym Shift+XF86MonBrightnessUp $brightness + 1
 
 # Additional function keys
 # TODO: Prevent XF86WLAN disconnecting WLAN?

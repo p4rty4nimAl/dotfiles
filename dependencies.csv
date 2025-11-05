@@ -16,6 +16,7 @@ file,dependencies
 .config/i3/open.d/firefox.i3,firefox
 .config/i3/open.d/github-desktop.i3,github-desktop?
 .config/i3/open.d/htop.i3,htop
+.config/i3/open.d/idea.i3,idea?
 .config/i3/open.d/node.i3,node?
 .config/i3/open.d/proton-authenticator.i3,proton-authenticator?
 .config/i3/open.d/proton-pass.i3,proton-pass?

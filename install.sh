@@ -57,7 +57,7 @@
 # minimal packages for graphical envrionment
 MIN_PKGS=(bash coreutils dbus-x11 firefox grep i3-wm i3status mawk python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
 # nice-to-haves
-PKGS=(brightnessctl dex dunst flameshot github-desktop hsetroot htop i3lock kwalletmanager picom proton-authenticator proton-pass pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
+PKGS=(brightness-udev dex dunst flameshot github-desktop hsetroot htop i3lock kwalletmanager picom pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
 # packages that arent available by default (on debian at least)
 NON_APT_PKGS=(code github-desktop node proton-authenticator proton-pass pycharm idea spotify steam)
 
