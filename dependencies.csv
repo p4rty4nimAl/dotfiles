@@ -23,8 +23,8 @@ file,dependencies
 .config/i3/open.d/pycharm.i3,pycharm?
 .config/i3/open.d/python3.i3,python3
 .config/i3/open.d/show-configs.i3,$EDITOR
-.config/i3/open.d/spotify.i3,spotify-client?
-.config/i3/open.d/steam.i3,steam-installer?
+.config/i3/open.d/spotify.i3,spotify?
+.config/i3/open.d/steam.i3,steam?
 .config/i3/open.d/thunar.i3,thunar
 .config/i3/picom.conf,picom
 .config/i3/resize.i3,
