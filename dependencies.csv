@@ -37,6 +37,7 @@ file,dependencies
 .config/i3/sh/dmenu.sh,suckless-tools
 .config/i3/sh/lock.sh,dunst hsetroot [.config/i3/sh/background.sh] i3lock
 .config/i3/sh/monitors.sh,x11-xserver-utils grep mawk coreutils hsetroot [.config/i3/sh/background.sh]
+.config/i3/sh/show_desktop.sh,jq
 .config/i3/sh/startup.sh,grep coreutils xinput x11-xserver-utils hsetroot [.config/i3/sh/toggle-compositor.sh]
 .config/i3/sh/toggle-compositor.sh,picom
 .config/i3/workspaces.i3,

@@ -40,3 +40,6 @@ bindsym $mod+space focus mode_toggle
 
 # change focus to parent
 bindsym $mod+a focus parent
+
+# show desktop
+bindsym $mod+Shift+d exec --no-startup-id $HOME/.config/i3/sh/show_desktop.sh
