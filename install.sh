@@ -65,23 +65,28 @@ notice() {
     fi
 }
 
+apt_install_packages() {
+    local description="$1"
+    shift
+    local TEST_PKGS
+    IFS=" " read -ra TEST_PKGS <<< "$@"
+
+    if ! is_installed "${TEST_PKGS[@]}"; then
+        notice
+        read -rep "Would you like to install the $description packages? (y/n): " CONSENT
+        if [ "$CONSENT" = "Y" ] || [ "$CONSENT" = "y" ]; then
+            read -ra MISSING <<< "$(which_missing "${TEST_PKGS[@]}")"
+            sudo apt install "${MISSING[@]}"
+        fi
+    fi
+
+}
+
 if [ "$1" != "noinstall" ]; then
-    if [ "$(is_installed ${MIN_PKGS[@]})" = "1" ]; then
-        notice
-        read -rep "Would you like to install the minimal graphical packages? (y/n): " CONSENT
-        if [ "$CONSENT" = "Y"] || [ "$CONSENT" = "y" ]; then
-            sudo apt install $(which_missing ${MIN_PKGS[@]})
-        fi
-    fi
-    if [ "$(is_installed ${PKGS[@]})" = "1" ]; then
-        notice
-        read -rep "Would you like to install the additional graphical packages? (y/n): " CONSENT
-        if [ "$CONSENT" = "Y"] || [ "$CONSENT" = "y" ]; then
-            sudo apt install $(which_missing ${PKGS[@]})
-        fi
-    fi
-    for dep in ${NON_APT_PKGS[@]}; do
-        if [ -z "$(command -v $dep)" ]; then
+    apt_install_packages "minimal graphical" "${MIN_PKGS[@]}"
+    apt_install_packages "additional graphical" "${PKGS[@]}"
+    for dep in "${NON_APT_PKGS[@]}"; do
+        if [ -z "$(command -v "$dep")" ]; then
             notice
             # not installed, prompt user
             read -rep "Would you like to install '$dep'? (y/n): " CONSENT
