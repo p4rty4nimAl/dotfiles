@@ -2,6 +2,7 @@ file,dependencies
 .bash_aliases,bash
 .bash_logout,bash
 .bashrc,bash
+.config/htop/htoprc,htop
 .config/i3/,i3-wm
 .config/i3/background.d/,
 .config/i3/close.i3,systemd
