@@ -14,8 +14,8 @@
 # code?, github-desktop?, node?, proton-authenticator?, proton-pass?, pycharm?, spotify-client(spotify)?, steam-installer(steam)?
 # coreutils(head, cut, tr, printf), suckless-tools(dmenu, dmenu_run), x11-xserver-utils(xrandr, xset), mawk(awk), ?(nvidia-settings)
 
-MIN_PKGS=(bash coreutils dbus-x11 firefox grep i3-wm i3status mawk python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
 # minimal packages for graphical environment
+MIN_PKGS=(bash coreutils dbus-x11 firefox-esr grep i3-wm i3status jq nano mawk python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
 # nice-to-haves
 PKGS=(brightness-udev dex dunst flameshot hsetroot htop i3lock kwalletmanager picom pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
 # packages that arent available by default (on debian at least)
