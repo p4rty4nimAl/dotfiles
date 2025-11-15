@@ -1,4 +1,2 @@
 env var for wallpapers directory
 env var: $TERMINAL
-env var: $EDITOR
-change_brightness.sh: just use /sys/class/backlight

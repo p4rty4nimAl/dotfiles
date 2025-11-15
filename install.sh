@@ -14,10 +14,10 @@
 # code?, github-desktop?, node?, proton-authenticator?, proton-pass?, pycharm?, spotify-client(spotify)?, steam-installer(steam)?
 # coreutils(head, cut, tr, printf), suckless-tools(dmenu, dmenu_run), x11-xserver-utils(xrandr, xset), mawk(awk), ?(nvidia-settings)
 
-# minimal packages for graphical envrionment
 MIN_PKGS=(bash coreutils dbus-x11 firefox grep i3-wm i3status mawk python3 sed suckless-tools systemd x11-xserver-utils xinit xserver-xorg)
+# minimal packages for graphical environment
 # nice-to-haves
-PKGS=(brightness-udev dex dunst flameshot github-desktop hsetroot htop i3lock kwalletmanager picom pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
+PKGS=(brightness-udev dex dunst flameshot hsetroot htop i3lock kwalletmanager picom pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
 # packages that arent available by default (on debian at least)
 NON_APT_PKGS=(code github-desktop node proton-authenticator proton-pass pycharm idea spotify steam)
 
@@ -59,7 +59,7 @@ which_missing() {
 
 notice_displayed="false"
 notice() {
-    if [ -n $notice_displayed ]; then
+    if [ -n "$notice_displayed" ]; then
         echo "You can suppress install requests with 'noinstall'."
         notice_displayed=
     fi
@@ -86,7 +86,8 @@ if [ "$1" != "noinstall" ]; then
             # not installed, prompt user
             read -rep "Would you like to install '$dep'? (y/n): " CONSENT
             if [ "$CONSENT" = "Y" ] || [ "$CONSENT" = "y" ]; then
-                . $(pwd)/installers/$dep.sh
+                # shellcheck source=installers/*.sh
+                . "$(pwd)/installers/$dep.sh"
             fi
         fi
     done
@@ -102,7 +103,7 @@ while IFS=, read -r file dependencies; do
             if [ ! -h "$HOME/$file" ] && [ ! -d "$HOME/$file" ]; then
                 # file is not from previous ./install.
                 # TODO: prompt to overwrite
-                echo "File already exists, ignoring: $file"
+                echo "File already exists, ignoring: $file" >&2
             fi
         else
             # file does not exist, create/symlink it
@@ -116,12 +117,13 @@ while IFS=, read -r file dependencies; do
         fi
     else
         # TODO: better error handling/raising here
-        # shellcheck disable=SC2086
         missing=$(which_missing $dependencies)
-        echo "Missing: $missing"
+        echo "Missing: $missing" >&2
     fi
 done <<< "$DEPS"
 
-echo "Installation successful! (*kind of)"
-echo "Running post-install script."
-. ./post-install.sh
+echo "Installation complete."
+if [ -e "./post-install.sh" ]; then
+    echo "Running post-install script."
+    . ./post-install.sh
+fi
