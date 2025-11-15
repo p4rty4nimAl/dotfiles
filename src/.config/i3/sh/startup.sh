@@ -22,7 +22,10 @@ fi
 # set up wireless mouse, disable acceleration
 xinput --set-prop "MM731 Hybrid Mouse" "libinput Accel Profile Enabled" 0 0
 
-if [ "$LAPTOP" = "ThinkPad" ]; then
+
+NUM_MONITORS=$(xrandr --current --listmonitors | awk '(NR==1) {print $2}')
+
+if [ "$NUM_MONITORS" = "1" ]; then
 	# do not know how xrandr organises outputs, assume first is best?
 	# works for me...
 	PRIMARY=$(xrandr --current | awk '(NR==2) {print $1}')
