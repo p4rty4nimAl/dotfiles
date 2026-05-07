@@ -43,3 +43,6 @@ bindsym $mod+a focus parent
 
 # show desktop
 bindsym $mod+Shift+d exec --no-startup-id $HOME/.config/i3/sh/show_desktop.sh
+
+# switch between windows & alt as meta key
+bindsym Mod1+Mod4+s exec --no-startup-id $HOME/.config/i3/sh/switch_meta.sh; reload;
