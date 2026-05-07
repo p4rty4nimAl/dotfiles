@@ -16,6 +16,7 @@ file,dependencies
 .config/i3/open.d/code.i3,code?
 .config/i3/open.d/datagrip.i3,datagrip?
 .config/i3/open.d/firefox.i3,firefox
+.config/i3/open.d/firefox-esr.i3,firefox-esr
 .config/i3/open.d/github-desktop.i3,github-desktop?
 .config/i3/open.d/htop.i3,htop
 .config/i3/open.d/idea.i3,idea?
