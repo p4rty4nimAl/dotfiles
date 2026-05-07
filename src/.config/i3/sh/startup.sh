@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-MODEL=$(hostnamectl | grep "Hardware Model:" | cut -d ":" -f 2)
-LAPTOP=$(echo "$MODEL" | cut -d " " -f 2)
-
-# [ "$MODEL" = " ThinkPad E14 Gen 3" ]
-
-# [ "$MODEL" = " ThinkPad X390" ]
-
 
 # set trackpad string
 CONNECTED_DEVICES=$(xinput list --name-only)
@@ -46,7 +39,7 @@ fi
 
 # set background display
 # shellcheck disable=SC2046,SC2086
-hsetroot $($HOME/.config/i3/sh/background.sh) #-cover "/home/astraea/.config/i3/background.png"
+hsetroot $("$HOME/.config/i3/sh/background.sh")
 # Set keyboard repeat rate delay: 250ms, repeat 20 hz
 xset r rate 250 20
 # start picom
