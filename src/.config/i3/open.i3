@@ -9,8 +9,7 @@ set $exit-esc bindsym Escape mode "default"
 
 set $; ; mode "default";
 set $exec exec --no-startup-id
-
-set $newterm exec i3-sensible-terminal -x /usr/bin/bash -c
+set $in_terminal $HOME/.config/i3/sh/term_runner.sh
 
 mode "open-browser" {
 	$exit-key

@@ -16,6 +16,8 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+export TERMINAL="xfce4-terminal"
+
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && command -v startx; then
         exec startx > /dev/null 2>& 1;
 fi

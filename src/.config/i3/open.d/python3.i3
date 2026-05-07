@@ -1,3 +1,3 @@
 mode "open-code" {
-	bindsym p $exec $newterm python3$;
+	bindsym p $exec $in_terminal "python3"$;
 }

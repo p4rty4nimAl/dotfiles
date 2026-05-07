@@ -1,3 +1,3 @@
 mode "open-root" {
-	bindsym t $exec $newterm htop$;
+	bindsym t $exec $in_terminal "htop"$;
 }

@@ -1,3 +1,3 @@
 mode "open-code" {
-	bindsym n $exec $newterm node$;
+	bindsym n $exec $in_terminal "node"$;
 }
