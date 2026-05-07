@@ -19,7 +19,7 @@ MIN_PKGS=(bash coreutils dbus-x11 firefox-esr grep i3-wm i3status jq nano mawk p
 # nice-to-haves
 PKGS=(brightness-udev dex dunst flameshot hsetroot htop i3lock kwalletmanager picom pulseaudio-utils thunar xfce4-terminal xinput xss-lock)
 # packages that arent available by default (on debian at least)
-NON_APT_PKGS=(code github-desktop node proton-authenticator proton-pass pycharm idea spotify steam)
+NON_APT_PKGS=(code datagrip github-desktop node proton-authenticator proton-pass pycharm idea spotify steam)
 
 # assuming x86_64 system, filtering in case of multiarch
 INSTALL_DATA="$(apt list "${MIN_PKGS[@]}" "${PKGS[@]}" 2>/dev/null | grep -v "i386" | tail -n +2)"
